@@ -1,0 +1,36 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+long long int tab[1000000];
+
+void Sito()
+{
+    tab[0] = 1;
+    tab[1] = 1;
+    for (long long int i = 0; i*i < 1000000; i++)
+    {
+        if ( tab[i] == 0)
+        {
+            for (long long int j = 2*i; j < 1000000 ; j +=i)
+                tab[j] = 1;
+        }
+    }
+}
+int main()
+{
+    int counter=0;
+    ofstream out;
+    out.open ("twinprimes.cpp");
+    Sito();
+    for( long long int i=0; i<1000000 ; i++)
+    {
+        if (tab[i]==0)
+        {
+            out << i << ",";
+            counter++;
+        }
+    }
+    cout << counter;
+}
